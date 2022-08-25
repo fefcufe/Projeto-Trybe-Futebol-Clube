@@ -26,7 +26,7 @@ export default class UsersService {
         message: 'Incorrect email or password',
       };
     }
-    const token = jwt.sign({ data: email }, secret, jwtConfig);
+    const token = jwt.sign({ email, role: user.role }, secret, jwtConfig);
     return { code: StatusCodes.OK,
       message: token };
   };
