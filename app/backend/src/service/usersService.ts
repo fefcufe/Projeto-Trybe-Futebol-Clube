@@ -16,14 +16,14 @@ export default class UsersService {
     if (!user) {
       return {
         code: StatusCodes.UNAUTHORIZED,
-        message: 'Email inválido!',
+        message: 'Incorrect email or password',
       };
     } const passwordCheck = await bcrypt.compare(password, user.password); // retorna true/false
 
     if (!passwordCheck) {
       return {
         code: StatusCodes.UNAUTHORIZED,
-        message: 'Senha inválida',
+        message: 'Incorrect email or password',
       };
     }
     const token = jwt.sign({ data: email }, secret, jwtConfig);
