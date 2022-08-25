@@ -10,4 +10,13 @@ export default class TeamsService {
       message: teams,
     };
   };
+
+  public getTeamById = async (id: number) => {
+    const team: ITeam | null = await Team.findByPk(id);
+
+    return {
+      code: StatusCodes.OK,
+      message: team,
+    };
+  };
 }
