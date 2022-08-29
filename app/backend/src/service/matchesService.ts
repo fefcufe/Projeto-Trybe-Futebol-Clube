@@ -1,8 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import Match from '../database/models/match';
-// import TeamsService from './teamsService';
 import Team from '../database/models/team';
-// import IMatches from '../Interfaces/match';
+import INewMatch from '../Interfaces/addNewMatch';
 // const teams = new TeamsService();
 
 export default class MatchesService {
@@ -24,6 +23,30 @@ export default class MatchesService {
     return {
       code: StatusCodes.OK,
       message: matches,
+    };
+  };
+
+  /*   corpo da requisicao: {
+  "homeTeam": 16, // O valor deve ser o id do time
+  "awayTeam": 8, // O valor deve ser o id do time
+  "homeTeamGoals": 2,
+  "awayTeamGoals": 2
+} */
+
+  /* resposta em caso de sucesso:
+{
+  "id": 1,
+  "homeTeam": 16,
+  "homeTeamGoals": 2,
+  "awayTeam": 8,
+  "awayTeamGoals": 2,
+  "inProgress": true,
+} */
+  public addMatch = async (body: INewMatch) => {
+    const newMatch = await Match.create({ ...body, inProgress: true });
+    return {
+      code: StatusCodes.CREATED,
+      message: newMatch,
     };
   };
 }
