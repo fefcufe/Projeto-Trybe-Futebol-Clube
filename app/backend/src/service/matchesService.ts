@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
+import IupdateGoals from '../Interfaces/updateMatch';
 import Match from '../database/models/match';
 import Team from '../database/models/team';
 import INewMatch from '../Interfaces/addNewMatch';
@@ -67,6 +68,14 @@ export default class MatchesService {
     return {
       code: StatusCodes.OK,
       message: 'Finished',
+    };
+  };
+
+  public updateGoals = async (id: number, { homeTeamGoals, awayTeamGoals }: IupdateGoals) => {
+    await Match.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+    return {
+      code: StatusCodes.OK,
+      message: 'Goals updated!',
     };
   };
 }

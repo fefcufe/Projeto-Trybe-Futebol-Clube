@@ -22,4 +22,10 @@ export default class MatchesController {
     const { code, message } = await this.matchesController.updateMatch(Number(id));
     return res.status(code).json({ message });
   };
+
+  public updateGoalsController = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { code, message } = await this.matchesController.updateGoals(Number(id), req.body);
+    return res.status(code).json({ message });
+  };
 }
