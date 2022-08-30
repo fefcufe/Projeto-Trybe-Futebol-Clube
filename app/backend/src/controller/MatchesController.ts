@@ -11,6 +11,15 @@ export default class MatchesController {
 
   public addMatchController = async (req: Request, res: Response) => {
     const { code, message } = await this.matchesController.addMatch(req.body);
-    return res.status(code).json(message);
+    if (code === 201) {
+      return res.status(code).json(message);
+    }
+    return res.status(code).json({ message });
+  };
+
+  public updateMatchController = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { code, message } = await this.matchesController.updateMatch(Number(id));
+    return res.status(code).json({ message });
   };
 }
