@@ -6,5 +6,6 @@ const router = Router();
 const leaderboardController = new LeaderboardController();
 // nao esquecer de por o validateToken
 router.get('/home', leaderboardController.getHomeLeaderboard);
+router.get('/away', leaderboardController.getAwayLeaderboard);
 
 export default router;

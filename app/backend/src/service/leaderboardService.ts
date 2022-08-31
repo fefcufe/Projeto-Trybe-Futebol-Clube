@@ -13,6 +13,14 @@ export default class LeaderboardService {
       message: homeLeaderboard,
     };
   };
+
+  public getAwayLeaderboard = async () => {
+    const [awayLeaderboard] = await models.query(queries.awayTeamLeaderboard);
+    return {
+      code: StatusCodes.OK,
+      message: awayLeaderboard,
+    };
+  };
   /* public homeTeamMatches = async (id: number) => {
     const homeMatches = await Match.findAll({ where: { homeTeam: id, inProgress: false } });
 
