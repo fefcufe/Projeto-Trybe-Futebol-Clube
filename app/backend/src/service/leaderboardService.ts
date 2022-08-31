@@ -4,6 +4,7 @@
 import { StatusCodes } from 'http-status-codes';
 import queries from '../utils/queries';
 import models from '../database/models';
+import { ILeaderboard } from '../Interfaces/leaderboards';
 
 export default class LeaderboardService {
   public getHomeLeaderboard = async () => {
@@ -21,6 +22,33 @@ export default class LeaderboardService {
       message: awayLeaderboard,
     };
   };
+
+  public sumLeadeboards = async (h: ILeaderboard, a: ILeaderboard) => {
+    const totalPoints = +(h.totalPoints + a.totalPoints);
+    const totalGames = +(h.totalGames + a.totalGames);
+    return {
+      name: h.name,
+      totalPoints,
+      totalGames,
+      totalVictories: +(h.totalVictories + a.totalVictories),
+      totalDraws: +(h.totalDraws + a.totalDraws),
+      totalLosses: +(h.totalLosses + a.totalLosses),
+      goalsFavor: +(h.goalsFavor + a.goalsFavor),
+      goalsOwn: +(h.goalsOwn + a.goalsOwn),
+      goalsBalance: +(h.goalsBalance + a.goalsBalance),
+      efficiency: +((totalPoints / (totalGames * 3)) * 100).toFixed(2),
+    };
+  };
+
+  /*   public getGeneralLeaderboard = async () => {
+    const [h] = await models.query(queries.homeTeamLeaderboard);
+    const [a] = await models.query(queries.awayTeamLeaderboard);
+    const resultLeaderaboard = h.map((hTeam: unknown) => {
+      const aTeam = a.find((awayTeam: unknown) => awayTeam.name === hTeam.name) as unknown;
+      return this.sumLeadeboards(hTeam, aTeam);
+    });
+    return resultLeaderaboard;
+  }; */
   /* public homeTeamMatches = async (id: number) => {
     const homeMatches = await Match.findAll({ where: { homeTeam: id, inProgress: false } });
 
