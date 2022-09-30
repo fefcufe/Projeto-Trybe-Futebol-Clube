@@ -4,11 +4,13 @@
 
   O `TFC` é um site informativo sobre partidas e classificações de futebol! ⚽️
 
-  Nesse projeto, fiquei responsávelpor desenvolver uma API (utilizando o método `TDD`) e também integrar *- através do docker-compose -* as aplicações para que elas funcionem consumindo um banco de dados.
+  Nesse projeto, fiquei responsável por desenvolver uma API (utilizando o método `TDD`) e também integrar *- através do docker-compose -* as aplicações para que elas funcionem consumindo um banco de dados.
 
   O back-end deste projeto foi dockerizado utilizando modelagem de dados através do Sequelize. O desenvolvimento do backend teve de  **respeitar regras de negócio** providas nas instruções do projeto para popular as tabelas e minha API foi consumida por um **front-end que já foi provido pela equipe da Trybe nesse projeto**.
 
   Para adicionar uma partida é necessário ter um _token_, portanto o usuário deve estar logado para fazer as alterações. Temos uma tabela de usuários `users`, uma tabela com as partidas `matches` que se relaciona com a tabela de times `teams`.
+  
+  Também foram realizados testes de integração utilizando as bibliotecas `chai`, `sinon` e `mocha`.
 
 ## Habilidades : 
 
